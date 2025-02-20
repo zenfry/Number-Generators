@@ -1,7 +1,3 @@
-Here’s a short **README** for your PRNG project:  
-
----
-
 ## **Pseudo-Random Number Generators (PRNG) in Python**  
 
 This project implements four different **pseudo-random number generators (PRNGs)** from scratch:  
@@ -13,7 +9,6 @@ This project implements four different **pseudo-random number generators (PRNGs)
 
 Each PRNG is implemented in a separate file and can be tested using `main.py`.  
 
----
 
 ### **Project Structure**  
 ```
@@ -26,7 +21,6 @@ Each PRNG is implemented in a separate file and can be tested using `main.py`.
     ├── README.md               # Project Documentation
 ```
 
----
 
 ### **How to Run**  
 
@@ -41,7 +35,6 @@ Each PRNG is implemented in a separate file and can be tested using `main.py`.
    ```
 4. You should see output from all four PRNGs.
 
----
 
 ### **Comparison of PRNGs**  
 
@@ -52,7 +45,6 @@ Each PRNG is implemented in a separate file and can be tested using `main.py`.
 | **Mersenne Twister** | High-quality randomness, long period (2^19937-1) | Slower, more complex |
 | **LCG** | Simple, fast | Poor randomness with bad parameters |
 
----
 
 ### **Details of Each PRNG**  
 
