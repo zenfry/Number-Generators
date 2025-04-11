@@ -64,3 +64,72 @@ Each PRNG is implemented in a separate file and can be tested using `main.py`.
 - Uses the formula: `X(n+1) = (aXn + c) % m`  
 - Fast and simple, but quality depends on `a`, `c`, and `m` values.  
 
+1. Middle Square Method
+Birthday Spacings Test
+Average Collisions: 164.33
+Expected (Poisson λ): 2.00
+The collision rate was significantly higher than expected. This suggests severe clustering and non-uniform spacing, indicative of poor randomness. The Middle Square method fails this test.
+Runs Test
+Observed Runs: 4800
+Expected Runs: 6666.33
+Z-score: -44.27
+The number of runs was drastically lower than expected. A low run count implies overly predictable or patterned sequences. This confirms a lack of variation and fails the test.
+Monobit Test
+Ones: 500,318
+Zeros: 499,682
+Test Statistic: 0.64
+The number of 1s and 0s was well-balanced, and the test statistic was within acceptable limits. This test was passed, but given failures elsewhere, this does not compensate for overall poor performance.
+Overall:  The Middle Square method exhibits fundamental flaws in randomness and fails two of the three tests. It is not suitable for any serious random number generation application.
+
+2. Xorshift
+Birthday Spacings Test
+Average Collisions: 1.83
+Expected (Poisson λ): 2.00
+The result was close to the expected mean, indicating good uniformity in spacing. The test was passed successfully.
+Runs Test
+Observed Runs: 5037
+Expected Runs: 6666.33
+Z-score: -38.65
+The generator failed this test with a significantly low number of runs. This may suggest the presence of hidden patterns or insufficient entropy between successive outputs.
+Monobit Test
+Ones: 499,946
+Zeros: 500,054
+Test Statistic: -0.11
+A near-perfect balance of 1s and 0s. The result falls well within the passing range. This indicates the bit-level distribution is uniform.
+Overall: Xorshift shows promising results on bit-level and spacing tests but fails the sequence-level runs test. This suggests adequate randomness for casual or performance-sensitive applications, but further evaluation is needed before using it in critical contexts.
+
+3. Mersenne Twister
+Birthday Spacings Test
+Average Collisions: 2.23
+Expected (Poisson λ): 2.00
+The observed value aligns closely with the expected mean, indicating a strong degree of uniformity. This test was passed.
+Runs Test
+Observed Runs: 5038
+Expected Runs: 6666.33
+Z-score: -38.62
+Despite its reputation for quality, the Mersenne Twister failed this runs test. The result suggests potential oversmoothing or regularity in its sequence transitions.
+Monobit Test
+Ones: 500,518
+Zeros: 499,482
+Test Statistic: 1.04
+The distribution of bits was well-balanced. The test passed comfortably, confirming a strong bit-level uniformity.
+Overall:  The Mersenne Twister performs well on two out of three tests and remains a widely trusted general-purpose PRNG. The run test failure warrants closer inspection but is likely influenced by test conditions rather than fundamental flaws.
+
+4. Linear Congruential Generator (LCG)
+Birthday Spacings Test
+Average Collisions: 2.13
+Expected (Poisson λ): 2.00
+The result falls within a reasonable tolerance range, indicating a sufficiently uniform output. This test is passed.
+Runs Test
+Observed Runs: 5000
+Expected Runs: 6666.33
+Z-score: -39.52
+The LCG failed the runs test, reflecting structured or repetitive behavior in its sequences—a known drawback of simple LCGs.
+Monobit Test
+Ones: 500,111
+Zeros: 499,889
+Test Statistic: 0.22
+A very balanced bit distribution. This test was passed successfully.
+Overall: The LCG shows acceptable uniformity and bit distribution but fails in sequence unpredictability. While suitable for non-critical tasks, its simplicity makes it vulnerable to pattern detection.
+
+
